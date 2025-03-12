@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Cards</title>
+    <style>
+        :root {
+            --card-bg-color: #f9f9f9;
+            --card-border-color: #ddd;
+            --card-radius: 10px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        project-card {
+            background-color: var(--card-bg-color);
+            border: 1px solid var(--card-border-color);
+            border-radius: var(--card-radius);
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            margin: 10px;
+        }
+
+        #error-message {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Projects</h1>
+    <button onclick="loadLocal()">Load Local</button>
+    <button onclick="loadRemote()">Load Remote</button>
+    <p id="error-message"></p>
+    <div class="container" id="project-container"></div>
+
+    <script>
+        class ProjectCard extends HTMLElement {
+            constructor() {
+                super();
+                this.attachShadow({ mode: 'open' });
+
+                this.shadowRoot.innerHTML = `
+                    <style>
+                        h2 { margin: 0; font-size: 1.5em; }
+                        p { margin: 0.5em 0; }
+                        a { color: blue; text-decoration: none; }
+                        img { max-width: 100%; border-radius: 5px; }
+                    </style>
+                    <h2></h2>
+                    <img />
+                    <p></p>
+                    <a></a>
+                `;
+            }
+
+            set project(data) {
+                this.shadowRoot.querySelector('h2').textContent = data.name;
+                this.shadowRoot.querySelector('img').src = data.image;
+                this.shadowRoot.querySelector('p').textContent = data.description;
+                this.shadowRoot.querySelector('a').href = data.link;
+                this.shadowRoot.querySelector('a').textContent = 'Learn more';
+            }
+        }
+
+        customElements.define('project-card', ProjectCard);
+
+        function loadLocal() {
+            const data = JSON.parse(localStorage.getItem('projects')) || [];
+            renderCards(data);
+        }
+
+        function loadRemote() {
+            const errorMessage = document.getElementById('error-message');
+            errorMessage.textContent = '';
+
+            fetch('https://api.jsonbin.io/v3/b/67d0f2b88561e97a50ea4662')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch data.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    localStorage.setItem('projects', JSON.stringify(data.record));
+                    renderCards(data.record);
+                })
+                .catch(err => {
+                    errorMessage.textContent = 'Failed to load remote data. Please check your URL or network.';
+                });
+        }
+
+        function renderCards(data) {
+            const container = document.getElementById('project-container');
+            container.innerHTML = '';
+
+            data.forEach(project => {
+                const card = document.createElement('project-card');
+                card.project = project;
+                container.appendChild(card);
+            });
+        }
+
+        // Sample data for localStorage
+        localStorage.setItem('projects', JSON.stringify([
+            {
+                name: 'Project 1',
+                image: 'https://via.placeholder.com/300',
+                description: 'This is project 1',
+                link: '#'
+            },
+            {
+                name: 'Project 2',
+                image: 'https://via.placeholder.com/300',
+                description: 'This is project 2',
+                link: '#'
+            }
+        ]));
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+    <header>
+        <hgroup>
+            <h1>My Portfolio</h1>
+        </hgroup>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="AboutMe.html">About Me</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="Projects.html">Projects</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="Login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <h2>Contact</h2>
+        <form>
+            <fieldset>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <br>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+                <br>
+                <label for="topic">Topic:</label>
+                <select id="topic" name="topic">
+                    <option value="general">General Inquiry</option>
+                    <option value="project">Project Collaboration</option>
+                    <option value="feedback">Feedback</option>
+                </select>
+                <br>
+                <label for="skills">Skills (type to search):</label>
+                <input list="skills-list" id="skills" name="skills">
+                <datalist id="skills-list">
+                    <option value="HTML"></option>
+                    <option value="CSS"></option>
+                    <option value="JavaScript"></option>
+                </datalist>
+                <br>
+                <button type="submit">Send</button>
+            </fieldset>
+        </form>
+    </section>
+    <section>
+        <h2>FAQ</h2>
+        <details>
+            <summary>Where am I from?</summary>
+            <p>France and UK</p>
+        </details>
+        <details>
+            <summary>How old am I ?</summary>
+            <p>21</p>
+        </details>
+    </section>
+    <iframe src="https://www.openstreetmap.org/#map=6/23.94/-102.58" width="600" height="400"></iframe>
+    <section>
+        <a href="resume.pdf" download class="download-btn">
+            <img src="download.svg" alt="Download Icon">
+        </a>
+    </section>
+    <button id="theme-toggle" aria-label="Toggle theme">
+        🌙
+    </button>
+    <script src="themeswitcher.js" defer></script>   
+</body>
+</html>
+

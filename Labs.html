@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        <h2>Highlighted Changes</h2>
+        <p>This text was <del>incorrect</del> <ins>updated correctly</ins> for accuracy.</p>
+        <span><b>Bolded text</b> and <i>italicized text</i> within a span.</span>
+        <hr>
+    </section>
+    <section>
+        <h2>Image and Graphics</h2>
+        <picture>
+            <source srcset="image.webp" type="image/webp">
+            <img src="image.jpg" alt="A sample image">
+        </picture>
+        <canvas id="myCanvas" width="200" height="100"></canvas>
+
+        <script>
+            const canvas = document.getElementById("myCanvas");
+            const ctx = canvas.getContext("2d");
+        
+            ctx.fillStyle = "lightblue";
+            ctx.fillRect(20, 20, 160, 60);
+        
+            ctx.fillStyle = "black";
+            ctx.font = "16px Arial";
+            ctx.fillText("Hello, Canvas!", 50, 55);
+        </script>
+        <svg width="100" height="100">
+            <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+        </svg>
+    </section>
+    <section>
+        <h2>Dropdown with Optgroup</h2>
+        <label for="category">Choose a category:</label>
+        <select id="category" name="category">
+            <optgroup label="Frontend">
+                <option value="html">HTML</option>
+                <option value="css">CSS</option>
+            </optgroup>
+            <optgroup label="Backend">
+                <option value="nodejs">Node.js</option>
+                <option value="python">Python</option>
+            </optgroup>
+        </select>
+    </section>
+    <aside>
+        <h2>Sidebar Content</h2>
+        <p>Additional resources and links can be found here.</p>
+    </aside>
+    <search>
+        <label for="search">Search:</label>
+        <input type="search" id="search" name="search">
+        <button type="submit">Go</button>
+    </search>
+    <noscript>
+        <p>JavaScript is disabled. Some features may not work correctly.</p>
+    </noscript>
+    <section>
+        <h2>Media</h2>
+        <audio controls>
+            <source src="audio.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <br>
+        <video controls>
+            <source src="video.mp4" type="video/mp4">
+            Your browser does not support the video element.
+        </video>
+        <br>
+        <iframe src="https://ucsd.edu/" width="600" height="400"></iframe>
+    </section>
+    <template>
+        <p>This is a reusable template element.</p>
+    </template>
+    <section>
+        <h2>About Me</h2>
+        <dl>
+            <dt><abbr title="HyperText Markup Language">HTML</abbr></dt>
+            <dd>The standard markup language for creating web pages.</dd>
+            <dt><abbr title="Cascading Style Sheets">CSS</abbr></dt>
+            <dd>A style sheet language used for describing the look and formatting of a document.</dd>
+        </dl>
+        <p>I am passionate about <dfn title="Front-End Development">building user interfaces</dfn> and writing clean, semantic code.</p>
+        <p>To save a file, press <kbd>Ctrl + S</kbd> on Windows or <kbd>Cmd + S</kbd> on Mac.</p>
+    </section>
+    <section>
+        <h2>Example of Code</h2>
+        <pre>
+<code>
+    const greeting = "Hello, World!";
+    console.log(greeting);
+</code>
+        </pre>
+    </section>
+    <section>
+        <div>
+            <fieldset>
+                <legend>Top 5 Web Development Skills</legend>
+                <ol>
+                    <li>HTML & CSS</li>
+                    <li>JavaScript</li>
+                    <li>React</li>
+                    <li>Node.js</li>
+                    <li>Git & GitHub</li>
+                </ol>
+            </fieldset>
+        </div>
+    </section>
+    
+</body>
+</html>

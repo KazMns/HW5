@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Projects.css">
+    <style>
+        fancy-card {
+            display: block;
+            border: 2px solid #4a90e2;
+            padding: 20px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            max-width: 300px;
+            margin: 20px auto;
+        }
+
+        fancy-card h2 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #1e88e5;
+        }
+
+        fancy-card p {
+            font-size: 1em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <hgroup>
+            <h1>My Portfolio</h1>
+        </hgroup>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="AboutMe.html">About Me</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="Projects.html">Projects</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="Login.html">Login</a></li>
+                <li><a href="contactFormjs.html">JSForm</a></li>         
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Project Cards</h2>
+        <button onclick="loadLocal()">Load Local</button>
+        <button onclick="loadRemote()">Load Remote</button>
+        <div id="cards-container"></div>
+        <p id="status"></p>
+        <p id="error-message" style="color: red;"></p>
+        <aside>
+            <h2>My Skills</h2>
+            <pre>
+    HTML        CSS         JavaScript    React
+    Node.js     Express     MongoDB       Java
+            </pre>
+        </aside>
+    </main>
+    
+
+    <a href="resume.pdf" download class="download-btn">
+        <img src="download.svg" alt="Download Icon">
+    </a>
+
+    <button id="theme-toggle" aria-label="Toggle theme">
+        🌙
+    </button>
+
+    <script src="themeswitcher.js" defer></script>   
+    <script>
+        class ProjectCard extends HTMLElement {
+            constructor() {
+                super();
+                this.attachShadow({ mode: 'open' });
+
+                this.shadowRoot.innerHTML = `
+                    <style>
+                        h2 { margin: 0; font-size: 1.5em; }
+                        p { margin: 0.5em 0; }
+                        a { color: blue; text-decoration: none; }
+                        img { max-width: 100%; border-radius: 5px; }
+                        ul { padding-left: 20px; text-align: left; }
+                        li { font-size: 1rem; margin-bottom: 5px; }
+                    </style>
+                    <h2></h2>
+                    <img />
+                    <h3></h3>
+                    <p></p>
+                    <ul></ul> 
+                `;
+            }
+
+            set project(data) {
+                this.shadowRoot.querySelector('h2').textContent = data.name;
+                this.shadowRoot.querySelector('img').src = data.image;
+                this.shadowRoot.querySelector('h3').textContent = data.date;
+                this.shadowRoot.querySelector('p').textContent = data.description;
+                const list = this.shadowRoot.querySelector('ul');
+                list.innerHTML = ''; // Clear previous content
+                if (data.points && Array.isArray(data.points)) {
+                    data.points.forEach(point => {
+                        const li = document.createElement('li');
+                        li.textContent = point;
+                        list.appendChild(li);
+                    })
+            }}
+        }
+
+        customElements.define('project-card', ProjectCard);
+
+        const container = document.getElementById('cards-container');
+        const statusMessage = document.getElementById('status');
+
+        function clearCards() {
+            container.innerHTML = '';
+        }
+
+        function loadLocal() {
+            clearCards();
+            const data = JSON.parse(localStorage.getItem('projects')) || [];
+            if (data.length === 0) {
+                statusMessage.textContent = 'No local projects found.';
+            } else {
+                statusMessage.textContent = 'Loaded from Local Storage';
+                renderCards(data);
+            }
+        }
+
+        function loadLocal() {
+            clearCards();
+            const data = JSON.parse(localStorage.getItem('projects')) || [];
+            if (data.length === 0) {
+                statusMessage.textContent = 'No local projects found.';
+            } else {
+                statusMessage.textContent = 'Loaded from Local Storage';
+                renderCards(data);
+            }
+        }
+
+        function loadRemote() {
+            clearCards();
+            statusMessage.textContent = 'Loading remote data...';
+            document.getElementById('error-message').textContent = '';
+
+            fetch('https://api.jsonbin.io/v3/b/67d0f2b88561e97a50ea4662')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch data.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    renderCards(data.record);  // Only render remote data, don't update localStorage
+                    statusMessage.textContent = 'Loaded from Remote API';
+                })
+                .catch(err => {
+                    document.getElementById('error-message').textContent = 'Failed to load remote data.';
+                    statusMessage.textContent = '';
+                });
+        }
+
+
+        function renderCards(data) {
+            clearCards();
+            data.forEach(project => {
+                const card = document.createElement('project-card');
+                card.project = project;
+                container.appendChild(card);
+            });
+        }
+
+        // Sample data for localStorage
+        localStorage.setItem('projects', JSON.stringify([
+            {
+                name: 'Project 1 - Web Development',
+                image: 'project.jpg',
+                date: 'January - April 2024',
+                description: 'Local Storage',
+                points: [
+                    'Developed a web employee portal for communication between technicians, HR, and employees.',
+                    'Used TypeScript React for front-end and Prisma for database management.',
+                    'Built a ticketing system for issue reporting, including creation, deletion, and filtering.'
+                ],
+            },
+            {
+                name: 'Project 2 - SaaS Project Intern',
+                image: 'project.jpg',
+                date: 'June - July 2024',
+                description: 'Local Storage',
+                points: [
+                    'Worked on a SaaS project based on TypeScript React.',
+                    'Enhanced my understanding of Agile methodologies.'
+                ],
+            },
+            {
+                name: 'Project 3 - Voting App',
+                image: 'project.jpg',
+                date: 'January - April 2024',
+                description: 'Local Storage',
+                points: [
+                    'Gained understanding of OOP.',
+                    'Created a Voting App in Java to allow students to vote on campus.',
+                    'Designed the UI/UX using Swing.'
+                ],
+            }
+        ]));
+    </script>
+</body>
+</html>

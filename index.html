@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <script src="hello-world.js" defer></script>
+</head>
+<body>
+    <header>
+        <hgroup>
+            <h1>My Portfolio</h1>
+        </hgroup>
+        <nav>
+            <ul>
+                <li><a href="index.html" autofocus>Home</a></li>
+                <li><a href="AboutMe.html">About Me</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="Projects.html">Projects</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="Login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section>
+            <h2>About Me</h2>
+            <p><strong>Learn more about</strong> <em>my background</em> and experiences!</p>
+            <blockquote>
+                <p>"Coding is an art form."</p>
+                <cite>- Developer</cite>
+            </blockquote>
+            <hr>
+            <figure>
+                <picture>
+                    <source srcset="profile.webp" type="image/webp">
+                    <img src="profile.jpg" alt="Profile Picture">
+                </picture>
+                <figcaption>My profile image</figcaption>
+            </figure>
+        </section>
+        
+    </main>
+    
+    <footer>
+        <address><em>
+            Contact me at <a href="mailto:email@example.com">kmuniesa@ucse.edu</a>
+        </em></address>
+    </footer>
+    
+    <a href="https://www.google.com/" accesskey="g">Google</a>
+    <p contenteditable="true">can you edit me?</p>
+
+    
+    <dialog open>
+        <p>Welcome to my portfolio!</p>
+        <button>Close</button>
+    </dialog>
+    
+    <hello-world></hello-world>
+
+    <script>
+        class HelloWorld extends HTMLElement {
+            constructor() {
+                super();
+                console.log("Hello World!");
+            }
+        }
+
+        customElements.define('hello-world', HelloWorld);
+    </script>
+    <button id="theme-toggle" aria-label="Toggle theme">
+        🌙
+    </button>
+    <script src="themeswitcher.js" defer></script>   
+</body>
+</html>

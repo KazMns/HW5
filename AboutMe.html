@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="AboutMe.css">
+</head>
+<body>
+    <header>
+        <hgroup>
+            <h1>My Portfolio</h1>
+        </hgroup>
+        <nav>
+            <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="AboutMe.html">About Me</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="Projects.html">Projects</a></li>
+                    <li><a href="Contact.html">Contact</a></li>
+                    <li><a href="Login.html">Login</a></li>     
+                    <li><a href="contactFormjs.html">JSForm</a></li>                           
+            </ul>
+        </nav>
+        
+    </header>
+    <main>
+        <section>
+            <figure>
+                <picture>
+                    <source srcset="medium.jpg" media="(min-width: 1024px)">
+                    <source srcset="small.jpg" media="(min-width: 600px)">
+                    <img src="large.jpg" alt="A picture of a golf course" loading="lazy">
+                  </picture>
+                <figcaption>
+                    <span class="browser-buttons">
+                        <span class="red"></span>
+                        <span class="grey"></span>
+                        <span class="green"></span>
+                    </span>
+                    I enjoy playing golf in my free time – it's a great way to relax and clear my mind.</figcaption>
+            </figure>
+        </section>
+        <section>
+            <figure>
+                <figcaption>
+                    <span class="browser-buttons">
+                        <span class="red"></span>
+                        <span class="grey"></span>
+                        <span class="green"></span>
+                    </span>
+                    Cybersecurity is another passion of mine; I love learning about ways to protect digital spaces.</figcaption>
+                    <picture>
+                        <source srcset="cyber-medium.jpg" media="(min-width: 1024px)">
+                        <source srcset="cyber-small.jpg" media="(min-width: 600px)">
+                        <img src="cyber-large.jpg" alt="A picture of a hardware component" loading="lazy">
+                      </picture>
+            </figure>
+        </section>
+        <section>
+            <figure>
+                <picture>
+                    <source srcset="sudoku-medium.jpg" media="(min-width: 1024px)">
+                    <source srcset="sudoku-small.jpg" media="(min-width: 600px)">
+                    <img src="sudoku-large.jpg" alt="A person playing sudoku" loading="lazy">
+                  </picture>
+                <figcaption>
+                    <span class="browser-buttons">
+                        <span class="red"></span>
+                        <span class="grey"></span>
+                        <span class="green"></span>
+                    </span>
+                    When I'm not coding, you can find me solving sudoku puzzles – it's a fun challenge!</figcaption>
+            </figure>
+        </section>
+        <section>
+            <figure>
+                <figcaption>
+                    <span class="browser-buttons">
+                        <span class="red"></span>
+                        <span class="grey"></span>
+                        <span class="green"></span>
+                    </span>
+                    As an experienced cook, I take great pride in preparing delicious meals and exploring new flavors.</figcaption>
+                    <picture>
+                        <source srcset="cooking-medium.jpg" media="(min-width: 1024px)">
+                        <source srcset="cooking-small.jpg" media="(min-width: 600px)">
+                        <img src="cooking-large.jpg" alt="A person chopping herbs" loading="lazy">
+                    </picture>
+            </figure>
+        </section>
+        <section>
+            <figure>
+                <picture>
+                    <source srcset="coffee-medium.jpg" media="(min-width: 1024px)">
+                    <source srcset="coffee-small.jpg" media="(min-width: 600px)">
+                    <img src="coffee-large.jpg" alt="Some coffee beans" loading="lazy">
+                  </picture>
+                <figcaption>
+                    <span class="browser-buttons">
+                        <span class="red"></span>
+                        <span class="grey"></span>
+                        <span class="green"></span>
+                    </span>
+                    And of course, I'm a coffee enthusiast! It fuels my energy and keeps me focused.</figcaption>
+            </figure>
+        </section>
+    </main>
+
+    <section>
+        <h2>My Skills</h2>
+        <table>
+            <caption>Skills Overview</caption>
+            <colgroup>
+                <col span="1" style="width: 50%">
+                <col span="1" style="width: 50%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>Skill</th>
+                    <th>Proficiency</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Languages (French, English)</td>
+                    <td>Advanced</td>
+                </tr>
+                <tr>
+                    <td>Golf</td>
+                    <td>3.2 Handicap</td>
+                </tr>
+                <tr>
+                    <td>Writing</td>
+                    <td>Advanced</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <a href="resume.pdf" download class="download-btn">
+            <img src="download.svg" alt="Download Icon">
+        </a>
+    </section>
+    <button id="theme-toggle" aria-label="Toggle theme">
+        🌙
+    </button>
+    <script src="themeswitcher.js" defer></script>    
+</body>
+</html>
